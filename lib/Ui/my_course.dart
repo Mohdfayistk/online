@@ -69,7 +69,7 @@ class _MyCourseState extends State<MyCourse> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => CourseContent()));
+                        MaterialPageRoute(builder: (_) => CourseContent(name:data[index].name.toString(),description: data[index].description.toString(),)));
                   },
                   child: Container(
                     width: 327.w,

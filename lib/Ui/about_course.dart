@@ -239,7 +239,7 @@ class _AboutCourseState extends State<AboutCourse> {
                   SizedBox(height: 15.h,),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CourseContent()));
+                    //  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CourseContent()));
                     },
                     child: Container(
                       width: 327.w,

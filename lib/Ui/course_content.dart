@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:online_course_app/Ui/my_course.dart';
 
 import 'video_player.dart';
 
 class CourseContent extends StatefulWidget {
-  const CourseContent({super.key});
+  final String name;
+  final String description;
+  const CourseContent({required this.name, required this.description});
 
   @override
   State<CourseContent> createState() => _CourseContentState();
@@ -215,7 +218,35 @@ class _CourseContentState extends State<CourseContent> {
                     ],
                   ),
                 ),
-
+                SizedBox(height: 10.h,),
+                Row(
+                  children: [
+                    SizedBox(width: 24.w,),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.name,
+                          style:GoogleFonts.montserrat(textStyle: TextStyle(
+                            color: Color(0xFF272323),
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                            height: 0.h,
+                          ) ),
+                        ),
+                        SizedBox(height: 10.h,),
+                        Text(
+                          widget.description,
+                          style:GoogleFonts.montserrat(textStyle: TextStyle(
+                            color: Color(0xFF272323),
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                            height: 0.h,
+                          ) ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.only(top: 24.h,bottom: 0.h,left: 24.w,right: 24.w),
                   child: Divider(
@@ -225,7 +256,7 @@ class _CourseContentState extends State<CourseContent> {
                 ),
 
                 SizedBox(
-                  height: 470.h,
+                  height: 400.h,
                   child: ListView.separated(
                       padding: EdgeInsets.only(
                         top: 32.h,
@@ -349,7 +380,7 @@ class _CourseContentState extends State<CourseContent> {
                               child: Center(
                                 child: GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>VideoApp()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>VideoApp(video: data[index].baseurl.toString(),)));
                                     },
                                     child: Image.asset("assets/playButton.png",width: 24.w,)),
                               ),

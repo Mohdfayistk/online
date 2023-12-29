@@ -6,12 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VideoApp extends StatefulWidget {
-  const VideoApp({Key? key}) : super(key: key);
+  final String video;
+  const VideoApp({Key? key,required this.video}) : super(key: key);
 
   @override
   State<VideoApp> createState() => _VideoAppState();
 }
-
+ String video='';
 class _VideoAppState extends State<VideoApp> {
   late VideoPlayerController _videoPlayerController,
       _videoPlayerController2,
@@ -25,18 +26,20 @@ class _VideoAppState extends State<VideoApp> {
 
   final CustomVideoPlayerWebSettings _customVideoPlayerWebSettings =
   CustomVideoPlayerWebSettings(
-    src: longVideo,
+    src:video,
   );
 
   @override
   void initState() {
+    setState(() {
+      video= widget.video;
+    });
     super.initState();
 
     _videoPlayerController = VideoPlayerController.network(
-      longVideo,
+      widget.video,
     )..initialize().then((value) => setState(() {}));
-    _videoPlayerController2 = VideoPlayerController.network(video240);
-    _videoPlayerController3 = VideoPlayerController.network(video480);
+
     _customVideoPlayerController = CustomVideoPlayerController(
       context: context,
       videoPlayerController: _videoPlayerController,
@@ -112,18 +115,7 @@ class _VideoAppState extends State<VideoApp> {
   }
 }
 
-String videoUrlLandscape =
-    "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";
-String videoUrlPortrait =
-    'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4';
-String longVideo =
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
-String video720 =
-    "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4";
 
-String video480 =
-    "https://www.sample-videos.com/video123/mp4/480/big_buck_bunny_480p_10mb.mp4";
 
-String video240 =
-    "https://www.sample-videos.com/video123/mp4/240/big_buck_bunny_240p_10mb.mp4";
+
